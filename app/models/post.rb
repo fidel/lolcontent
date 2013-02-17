@@ -3,7 +3,9 @@ require 'carrierwave/orm/activerecord'
 class Post < ActiveRecord::Base
 
   extend FriendlyId
-  friendly_id :title, use: :slugged
+  friendly_id :title, use: [:slugged, :history]
+
+  after_validation :move_friendly_id_error_to_title
 
   belongs_to :user
 
@@ -23,4 +25,9 @@ class Post < ActiveRecord::Base
   validates :photo,
     presence: true
 
+  private
+
+  def move_friendly_id_error_to_title
+    errors.add :title, *errors.delete(:friendly_id) if errors[:friendly_id].present?
+  end
 end

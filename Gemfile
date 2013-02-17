@@ -30,4 +30,5 @@ gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
 gem 'rmagick'
 gem 'carrierwave'
 gem 'activeadmin'
+gem "friendly_id", "~> 4.0.9"
 
