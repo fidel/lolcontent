@@ -1,13 +1,11 @@
 %p#notice= notice
 
+%h1= @post.title
+
+%img{ src: @post.photo_url(:normal) }
+
 %p
-  %b Title:
-  = @post.title
-%p
-  %b Photo:
-  = @post.photo
-%p
-  %b User:
+  %b Added by:
   = @post.user_id
 
 = link_to 'Edit', edit_post_path(@post)
